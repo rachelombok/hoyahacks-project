@@ -1,8 +1,8 @@
 import tweepy
 import time
-import webbrowser
+#import webbrowser
 import config
-import csv
+#import csv
 import requests
 import urllib.request
 from news_sources import sources
