@@ -73,7 +73,42 @@ def replytweets():
                 print(newtweet)
                 api.update_status('@' + tweet.user.screen_name + ' ' + newtweet, tweet.id)
         #"{0:.2f}".format(a)
+
+#Query Search Function
+#define or search for relevant tweets based on the topic, and from a specified twitter handle
+#reply to the tweet with the most relevant article from that handle, including its credibility status.
+#example: @hoyabot topic: Proud Boys @cnnbrk
+def query_search():
+    tweets = api.mentions_timeline(count=50)
+    newtweet = ""
+    for tweet in tweets:
+        #command only runs if user presents topic: in their tweet to the bot.
+        query = tweet.text.split()
+        if (query[1] == "topic:"):
+            subject = ""
+            #builds the subject, or topic, the user presents to the bot
+            for i in range(2,len(query)-1):
+                subject += query[i] + " "
+            handle = query[len(query)-1].replace("@", "") #the news source is the last thing in tweet (if done properly)
+            for source in api.search(q=subject, lang="en", result_type="popular", count=100):
+                if (source.author.screen_name == handle): #tries to find the matching source and article
+                    if handle in sources: #same code as before, rates the credibility and replies back.
+                        reliability = (sources[handle][1] / 64) * 100
+                        bias = (sources[handle][2] / 42) * 100
+                        slant = ' Right'
+                        if bias < 0:
+                            slant = ' Left'
+                            bias *= -1
+                        lean = bias_measure(int(bias), slant)
+                        newtweet = "Article: " + source.text + "\nPublication: " + sources[handle][0] + "\nSource Reliability: " + str("{0:.2f}".format(reliability)) + "%\n" + "Bias: " + str("{0:.2f}".format(bias)) + "%" + slant + lean
+                    else:
+                        newtweet = "This news source is not yet covered."
+                    print(newtweet)
+                    api.update_status('@' + tweet.user.screen_name + ' ' + newtweet)
+# end query_search
+
 def main():
-    replytweets()
+    #replytweets()
+    query_search()
 
 main()
