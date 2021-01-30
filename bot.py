@@ -30,7 +30,9 @@ def bias_measure(percentage, slant):
         return "\nMost Extreme" + slant
 
 def replytweets():
-    tweets = api.mentions_timeline(count=50)
+    latest_mention = api.mentions_timeline(count=1)
+    mostRecentid = latest_mention[0].id
+    tweets = api.mentions_timeline(since_id = mostRecentid, count=10)
     for tweet in tweets:
         print(tweet.text)
         print(tweet.in_reply_to_user_id)
@@ -80,6 +82,8 @@ def replytweets():
                     newtweet = "This news source is not yet covered."
                 print(newtweet)
                 api.update_status('@' + tweet.user.screen_name + ' ' + newtweet, tweet.id)
+        # mostRecentid = api.mentions_timeline(since_id=mostRecentid, count=1)
+        mostRecentid = tweet.id
         #"{0:.2f}".format(a)
 
 #Query Search Function
@@ -87,7 +91,7 @@ def replytweets():
 #reply to the tweet with the most relevant article from that handle, including its credibility status.
 #example: @hoyabot topic: Proud Boys @cnnbrk
 def query_search():
-    tweets = api.mentions_timeline(count=50)
+    tweets = api.mentions_timeline(count=10)
     newtweet = ""
     for tweet in tweets:
         #command only runs if user presents topic: in their tweet to the bot.
