@@ -1,5 +1,5 @@
 sources = {
-    "cnnbrk": ["Wall Street Journal", 44.22, -10.26],
+    "cnnbrk": ["CNN", 44.22, -10.26],
     "MSNBC":["MSNBC", 43.37,-15.08],
     "AP":["Associated Press", 52.24, -1.80],
     "NPR":["National Public Radio",49.86,-3.98], 
