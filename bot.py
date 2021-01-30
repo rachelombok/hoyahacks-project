@@ -6,10 +6,18 @@ import csv
 import requests
 import urllib.request
 from news_sources import sources
+from os import environ
+
+CONSUMER_KEY = environ['CONSUMER_KEY']
+CONSUMER_SECRET = environ['CONSUMER_SECRET']
+ACCESS_KEY = environ['ACCESS_KEY']
+ACCESS_SECRET = environ['ACCESS_SECRET']
 
 auth = tweepy.OAuthHandler(config.api_key, config.api_secret_key)
 auth.set_access_token(config.access_token, config.access_token_secret)
 api = tweepy.API(auth)
+
+INTERVAL = 60 * 60 * 2 # checks mentioned every 2 hours
 
 def bias_measure(percentage, slant):
     if percentage <= 14:
@@ -110,5 +118,6 @@ def query_search():
 def main():
     #replytweets()
     query_search()
+    time.sleep(INTERVAL)
 
 main()
