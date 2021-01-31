@@ -125,9 +125,11 @@ def data_bank_search():
         source_name = line.split('"')[1]; #isolates name of source                                                                                                                                          
         possible_users = api.search_users(q=source_name, count=1) #finds all possible users                                                                                                                 
         if (len(possible_users) > 0):
-            print("@"+possible_users[0].screen_name)
+            for user in possible_users:
+                if (user.verified and user.screen_name != possible_users[0].screen_name):
+                    print('"'+user.screen_name+'": ["'+source_name+'"' + line.split('"')[2].strip()+"],")
         else:
-            print("Could not find handle for: " + source_name)
+            print("")
 #end data_bank_search
 
 def main():
