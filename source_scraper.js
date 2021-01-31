@@ -37,9 +37,7 @@ async function main(){
 	name = await name.replace(" Bias and Reliability", "");
 	await console.log('"' + name + '"'  + ", " + reliability + ", " + bias);
 	await driver.get("https://www.adfontesmedia.com/rankings-by-individual-news-source/");
-	await driver.sleep(2000);
     }
 }
 
-//*[@id="post-14464"]/div/div/div/div/div/div[1]/p[6]/strong
 main();
