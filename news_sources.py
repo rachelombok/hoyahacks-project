@@ -187,7 +187,7 @@ sources = {
     "TheWeek": ["The Week", 35.67, -15.62],
     "theGrio": ["TheGrio", 38.43, -11.38],
     "thinkprogress": ["ThinkProgress", 34.32, -19.74],
-    "TIME": ["Time Magazine", 0, 0],
+    "TIME": ["Time Magazine", 42.70, -4.35],
     "TMZ": ["TMZ", 39.52, -10.64],
     "townhallcom": ["Townhall –", 25.59, 20.97],
     "truthout": ["Truthout", 26.55, -21.21],
