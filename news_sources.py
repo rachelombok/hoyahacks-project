@@ -69,7 +69,7 @@ sources = {
     "FortuneMagazine": ["Fortune", 45.47, 0.17],
     "goforward": ["Forward", 39.92, -7.85],
     "FoxNews": ["Fox News", 33.53, 17.00],
-    "FoxNews": ["Fox News TV Cable Network", 0, 0],
+    "FoxNews": ["Fox News TV Cable Network", 23.16, 24.56],
     "tfredmuggs": ["FreeSpeech TV", 23.06, -23.26],
     "glennbeck": ["Glenn Beck", 19.50, 23.92],
     "goodnewsnetwork": ["Good News Network", 44.68, -2.55],
