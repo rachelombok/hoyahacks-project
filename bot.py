@@ -7,12 +7,12 @@ import requests
 import urllib.request
 from news_sources import sources
 from os import environ
-
+'''
 CONSUMER_KEY = environ['CONSUMER_KEY']
 CONSUMER_SECRET = environ['CONSUMER_SECRET']
 ACCESS_KEY = environ['ACCESS_KEY']
 ACCESS_SECRET = environ['ACCESS_SECRET']
-
+'''
 auth = tweepy.OAuthHandler(config.api_key, config.api_secret_key)
 auth.set_access_token(config.access_token, config.access_token_secret)
 api = tweepy.API(auth)
@@ -30,9 +30,7 @@ def bias_measure(percentage, slant):
         return "\nMost Extreme" + slant
 
 def replytweets():
-    latest_mention = api.mentions_timeline(count=1)
-    mostRecentid = latest_mention[0].id
-    tweets = api.mentions_timeline(since_id = mostRecentid, count=10)
+    tweets = api.mentions_timeline(count=10)
     for tweet in tweets:
         print(tweet.text)
         print(tweet.in_reply_to_user_id)
@@ -83,7 +81,7 @@ def replytweets():
                 print(newtweet)
                 api.update_status('@' + tweet.user.screen_name + ' ' + newtweet, tweet.id)
         # mostRecentid = api.mentions_timeline(since_id=mostRecentid, count=1)
-        mostRecentid = tweet.id
+       
         #"{0:.2f}".format(a)
 
 #Query Search Function
@@ -116,7 +114,7 @@ def query_search():
                     else:
                         newtweet = "This news source is not yet covered."
                     print(newtweet)
-                    api.update_status('@' + tweet.user.screen_name + ' ' + newtweet)
+                    api.update_status('@' + tweet.user.screen_name + ' ' + newtweet, tweet.id)
 # end query_search
 #tool used to search for our tweet handles associated with our accounts.                                                                                                                                    
 def data_bank_search():
@@ -133,8 +131,8 @@ def data_bank_search():
 #end data_bank_search
 
 def main():
-    #replytweets()
-    #query_search()
+    replytweets()
+    query_search()
     time.sleep(INTERVAL)
 
 main()

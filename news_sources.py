@@ -118,7 +118,7 @@ sources = {
     "njdotcom": ["NJ.com", 47.87, -1.80],
     "NOLAnews": ["NOLA.com", 48.63, -3.48],
     "NPR": ["NPR", 48.16, -4.53],
-    "OAN_HQ": ["OAN Network", 21.67, 21.46],
+    "OANN": ["OAN Network", 21.67, 21.46],
     "OccupyDemocrats": ["Occupy Democrats", 21.53, -25.31],
     "OWHnews": ["Omaha World-Herald", 47.91, -0.40],
     "orlandosentinel": ["Orlando Sentinel", 48.23, -4.96],
