@@ -118,10 +118,23 @@ def query_search():
                     print(newtweet)
                     api.update_status('@' + tweet.user.screen_name + ' ' + newtweet)
 # end query_search
+#tool used to search for our tweet handles associated with our accounts.                                                                                                                                    
+def data_bank_search():
+    f = open("message-6.txt", "r") #open file for reading                                                                                                                                                   
+    for line in f:
+        source_name = line.split('"')[1]; #isolates name of source                                                                                                                                          
+        possible_users = api.search_users(q=source_name, count=1) #finds all possible users                                                                                                                 
+        if (len(possible_users) > 0):
+            for user in possible_users:
+                if (user.verified and user.screen_name != possible_users[0].screen_name):
+                    print('"'+user.screen_name+'": ["'+source_name+'"' + line.split('"')[2].strip()+"],")
+        else:
+            print("")
+#end data_bank_search
 
 def main():
     #replytweets()
-    query_search()
+    #query_search()
     time.sleep(INTERVAL)
 
 main()
